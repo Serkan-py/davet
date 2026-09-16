@@ -477,3 +477,127 @@ p,h1,h2,h3,h4,figure{margin:0}
   .hero-copy h1{font-size:clamp(45px,12.3vw,50px)}
   .hero-date{font-size:10px}
 }
+
+/* v10 FINAL — mobile legibility, balanced spacing, fixed countdown columns */
+.hero-flower{display:none!important}
+
+.countdown-line p{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:0;
+  width:100%;
+  max-width:520px;
+  margin:0 auto;
+  align-items:stretch;
+}
+.countdown-line p span{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-width:0;
+  padding:1px 6px;
+  white-space:normal;
+}
+.countdown-line p span:not(:last-child)::after{
+  content:"";
+  position:absolute;
+  top:16%;
+  right:0;
+  width:1px;
+  height:68%;
+  background:rgba(159,133,91,.20);
+}
+.countdown-line p b{
+  display:block;
+  min-width:2.2ch;
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum" 1;
+  line-height:1;
+}
+.countdown-line p small{
+  display:block;
+  margin-top:4px;
+  font-family:var(--sans);
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:.055em;
+  color:#7A7166;
+}
+.countdown-line p i{display:none!important}
+
+@media(max-width:767px){
+  /* Mobilde içerik kenarlara yapışmasın ve bölüm boşlukları dengeli kalsın. */
+  .family-section{padding-top:36px;padding-bottom:38px}
+  .family-section>.section-kicker{margin-bottom:14px}
+  .family-grid{width:min(100%,400px);padding:0 4px}
+  .family{padding:18px 8px}
+  .family:first-child{padding-bottom:20px}
+  .family:last-child{padding-top:20px}
+  .family-label{font-size:11.5px;letter-spacing:.15em}
+  .family-names{font-size:40px;line-height:1.02;margin:9px 0 7px}
+  .family-surname{font-size:11.5px;letter-spacing:.22em}
+
+  /* Kına / Düğün: mobilde daha okunaklı ve dolu bir kompozisyon. */
+  .events-section{padding-inline:12px;padding-top:28px;padding-bottom:40px}
+  .event-grid{gap:16px}
+  .event{padding:24px 20px 20px;border-radius:18px}
+  .event-header{padding-bottom:15px}
+  .event-city{font-size:11.5px;letter-spacing:.145em;line-height:1.25}
+  .event-header h3{margin-top:4px;font-size:52px;line-height:.94}
+  .event-date-row{grid-template-columns:1fr 1fr;padding:19px 0 17px}
+  .event-date{gap:10px;padding-right:10px}
+  .event-date strong{font-size:62px;line-height:.80}
+  .event-date>span{font-size:12px;letter-spacing:.105em;line-height:1.2}
+  .event-date small{font-size:10px;margin-top:4px}
+  .event-meta{padding-left:10px}
+  .event-meta>p:first-child{font-size:10.8px;letter-spacing:.10em}
+  .event-meta>p:last-child{margin-top:5px;gap:5px}
+  .event-meta span{font-size:10px}
+  .event-meta strong{font-size:29px}
+  .event-place{padding:17px 0 16px}
+  .event-place h4{font-size:31px;line-height:1.08}
+  .event-place p{max-width:340px;margin-top:9px;font-size:15px;line-height:1.46}
+  .countdown-line{padding:14px 0 13px}
+  .countdown-label{font-size:10px;margin-bottom:8px}
+  .countdown-line p{max-width:360px}
+  .countdown-line p span{padding:1px 4px}
+  .countdown-line p b{font-size:21px}
+  .countdown-line p small{font-size:9.5px;margin-top:4px;letter-spacing:.035em}
+  .event-actions{grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}
+  .event-actions a{min-height:48px;padding:0 9px;font-size:13.5px;gap:7px}
+  .event-actions a svg{width:17px;height:17px}
+
+  /* İletişim: telefonlar rahat okunur, boşluklar kontrollü. */
+  .contact-section{padding-top:36px;padding-bottom:40px}
+  .contact-section>.section-kicker{margin-bottom:14px}
+  .contact-grid{width:min(100%,400px);gap:4px;padding:0 4px}
+  .contact-person{grid-template-columns:34px 1fr;gap:12px;padding:15px 4px}
+  .contact-person small{font-size:10.5px;letter-spacing:.145em}
+  .contact-person strong{font-size:28px;line-height:1.08}
+  .contact-person em{margin-top:3px;font-size:14.5px;letter-spacing:.055em;font-variant-numeric:tabular-nums}
+}
+
+@media(max-width:390px){
+  .family-names{font-size:38px}
+  .event{padding-left:18px;padding-right:18px}
+  .event-header h3{font-size:50px}
+  .event-date strong{font-size:59px}
+  .event-date>span{font-size:11.5px}
+  .event-meta strong{font-size:27px}
+  .event-place h4{font-size:29px}
+  .event-place p{font-size:14.3px}
+  .event-actions a{font-size:13px}
+  .contact-person strong{font-size:27px}
+  .contact-person em{font-size:14px}
+}
+
+@media(max-width:360px){
+  .family-names{font-size:36px}
+  .event-date strong{font-size:55px}
+  .event-place p{font-size:13.8px}
+  .event-actions{grid-template-columns:1fr 1fr}
+  .event-actions a{font-size:12px;padding-inline:6px}
+  .countdown-line p small{font-size:8.8px}
+}

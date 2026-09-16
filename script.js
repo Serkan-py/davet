@@ -207,7 +207,7 @@
     const hours = Math.floor(total / 3600) % 24;
     const minutes = Math.floor(total / 60) % 60;
     const seconds = total % 60;
-    out.innerHTML = `<span><b>${days}</b> Gün</span><i>·</i><span><b>${String(hours).padStart(2,'0')}</b> Saat</span><i>·</i><span><b>${String(minutes).padStart(2,'0')}</b> Dakika</span><i>·</i><span><b>${String(seconds).padStart(2,'0')}</b> Saniye</span>`;
+    out.innerHTML = `<span><b>${days}</b><small>Gün</small></span><span><b>${String(hours).padStart(2,'0')}</b><small>Saat</small></span><span><b>${String(minutes).padStart(2,'0')}</b><small>Dakika</small></span><span><b>${String(seconds).padStart(2,'0')}</b><small>Saniye</small></span>`;
   };
   const tick = () => countdowns.forEach(renderCountdown);
   tick();
