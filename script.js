@@ -52,52 +52,60 @@
     }, { passive: true });
   }
 
-  // Video: yalnızca oynat / duraklat. Video bittiğinde oynat simgesi görünür.
+  // Video: butonda gerçekten tek SVG bulunur. Yol verisi video durumuna göre değişir.
   const video = document.querySelector('.couple-video');
   const scene = document.querySelector('.meeting-scene');
   const endPoster = document.querySelector('.scene-end-poster');
   const toggle = document.querySelector('[data-video-toggle]');
-  const playIcon = document.querySelector('[data-icon-play]');
-  const pauseIcon = document.querySelector('[data-icon-pause]');
+  const videoIconPath = document.querySelector('[data-video-icon-path]');
 
-  const setIcon = state => {
-    if (!toggle) return;
-    if (playIcon) playIcon.hidden = state !== 'play';
-    if (pauseIcon) pauseIcon.hidden = state !== 'pause';
-    toggle.setAttribute('aria-label', state === 'pause' ? 'Videoyu durdur' : 'Videoyu başlat');
+  const ICON_PLAY = 'M8 5.5v13l10-6.5-10-6.5Z';
+  const ICON_PAUSE = 'M7 5h4v14H7V5Zm6 0h4v14h-4V5Z';
+
+  const setVideoButton = playing => {
+    if (!toggle || !videoIconPath) return;
+    videoIconPath.setAttribute('d', playing ? ICON_PAUSE : ICON_PLAY);
+    toggle.setAttribute('aria-label', playing ? 'Videoyu durdur' : 'Videoyu başlat');
+    toggle.setAttribute('aria-pressed', playing ? 'true' : 'false');
   };
 
   if (video) {
-    const play = async () => {
+    const playVideo = async () => {
       try {
         endPoster?.classList.remove('is-visible');
-        if (video.ended) video.currentTime = 0;
+        if (video.ended || video.currentTime >= video.duration - 0.08) video.currentTime = 0;
         await video.play();
       } catch (_) {
-        setIcon('play');
+        setVideoButton(false);
       }
     };
 
+    const syncVideoButton = () => setVideoButton(!video.paused && !video.ended);
+
     video.addEventListener('loadeddata', () => video.classList.add('is-ready'), { once: true });
-    video.addEventListener('canplay', () => video.classList.add('is-ready'), { once: true });
+    video.addEventListener('canplay', () => {
+      video.classList.add('is-ready');
+      syncVideoButton();
+    }, { once: true });
     video.addEventListener('play', () => {
       scene?.classList.add('is-started');
-      setIcon('pause');
+      setVideoButton(true);
     });
-    video.addEventListener('pause', () => {
-      if (!video.ended) setIcon('play');
-    });
+    video.addEventListener('playing', () => setVideoButton(true));
+    video.addEventListener('pause', syncVideoButton);
     video.addEventListener('ended', () => {
       endPoster?.classList.add('is-visible');
-      setIcon('play');
+      setVideoButton(false);
     });
     video.addEventListener('error', () => {
       video.style.display = 'none';
       if (toggle) toggle.hidden = true;
     });
 
-    toggle?.addEventListener('click', () => {
-      if (video.paused || video.ended) play();
+    toggle?.addEventListener('click', async event => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (video.paused || video.ended) await playVideo();
       else video.pause();
     });
 
@@ -108,12 +116,18 @@
         video.pause();
       } else if (resume && !reduced.matches) {
         resume = false;
-        play();
+        playVideo();
+      } else {
+        syncVideoButton();
       }
     });
 
-    if (reduced.matches) setIcon('play');
-    else play();
+    if (reduced.matches) {
+      setVideoButton(false);
+    } else {
+      setVideoButton(false);
+      playVideo();
+    }
   }
 
   // Fon müziği: kök dizindeki music.m4a dosyasını kullanır.

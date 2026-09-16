@@ -601,3 +601,69 @@ p,h1,h2,h3,h4,figure{margin:0}
   .event-actions a{font-size:12px;padding-inline:6px}
   .countdown-line p small{font-size:8.8px}
 }
+
+/* v10.2 FINAL — remaining requested mobile refinements */
+@media(max-width:767px){
+  /* Hero: no decorative flower overlays, keep video unobstructed. */
+  .hero-flower{display:none!important}
+  .hero-date{font-size:11.5px;letter-spacing:.29em}
+
+  /* Families: larger names, tighter and more intentional vertical rhythm. */
+  .family-section{padding-top:34px;padding-bottom:36px}
+  .family-section>.section-kicker{margin-bottom:12px;font-size:12px;letter-spacing:.20em}
+  .family-grid{width:min(100%,410px);margin-inline:auto;padding-inline:2px;gap:0}
+  .family{padding:17px 8px}
+  .family:first-child{padding-bottom:18px}
+  .family:last-child{padding-top:18px}
+  .family-label{font-size:12px;letter-spacing:.145em}
+  .family-names{font-size:41px;line-height:1.01;margin:8px 0 7px}
+  .family-surname{font-size:12px;letter-spacing:.21em}
+
+  /* Event details: date/address/buttons are intentionally larger on phones. */
+  .events-section{padding-top:26px;padding-bottom:36px;padding-inline:12px}
+  .event-grid{gap:15px}
+  .event{padding:23px 19px 19px}
+  .event-header{padding-bottom:14px}
+  .event-city{font-size:12px;letter-spacing:.14em}
+  .event-header h3{font-size:52px;line-height:.94}
+  .event-date-row{padding:18px 0 16px}
+  .event-date strong{font-size:64px}
+  .event-date>span{font-size:12.5px}
+  .event-date small{font-size:10.5px}
+  .event-meta>p:first-child{font-size:11px}
+  .event-meta span{font-size:10.5px}
+  .event-meta strong{font-size:30px}
+  .event-place{padding:16px 0 15px}
+  .event-place h4{font-size:31px}
+  .event-place p{max-width:345px;font-size:15.5px;line-height:1.45}
+  .event-actions{gap:9px;margin-top:15px}
+  .event-actions a{min-height:48px;font-size:14px;padding-inline:9px}
+
+  /* Fixed 4-column countdown: digits and labels never shift as values change. */
+  .countdown-line{padding:13px 0 12px}
+  .countdown-line p{grid-template-columns:repeat(4,minmax(0,1fr));width:100%;max-width:365px;gap:0}
+  .countdown-line p span{min-width:0;padding-inline:3px}
+  .countdown-line p b{min-width:2.2ch;font-size:22px;font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+  .countdown-line p small{font-size:9.5px;white-space:nowrap}
+
+  /* Contact section: bigger phone text and balanced spacing. */
+  .contact-section{padding-top:34px;padding-bottom:38px}
+  .contact-section>.section-kicker{margin-bottom:12px;font-size:12px;letter-spacing:.20em}
+  .contact-grid{width:min(100%,410px);margin-inline:auto;padding-inline:2px;gap:2px}
+  .contact-person{grid-template-columns:34px 1fr;gap:12px;padding:14px 4px}
+  .contact-person small{font-size:11px;letter-spacing:.14em}
+  .contact-person strong{font-size:28px;line-height:1.06}
+  .contact-person em{margin-top:4px;font-size:15.5px;letter-spacing:.045em;font-variant-numeric:tabular-nums}
+}
+
+@media(max-width:390px){
+  .hero-date{font-size:11px}
+  .family-names{font-size:39px}
+  .event{padding-left:17px;padding-right:17px}
+  .event-date strong{font-size:60px}
+  .event-date>span{font-size:12px}
+  .event-place p{font-size:14.7px}
+  .event-actions a{font-size:13.5px}
+  .contact-person strong{font-size:27px}
+  .contact-person em{font-size:15px}
+}
