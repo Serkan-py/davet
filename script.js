@@ -130,8 +130,8 @@
     }
   }
 
-  // Fon müziği: kök dizindeki music.m4a dosyasını kullanır.
-  // Mobil kaydırmayı engellememek için yalnızca gerçek tıklamada kilit açılır.
+  // Fon müziği: sayfa açılır açılmaz çalmayı dener.
+  // Tarayıcı sesli autoplay'i engellerse ilk kullanıcı etkileşiminde otomatik açılır.
   const music = document.querySelector('#wedding-music');
   const musicToggle = document.querySelector('[data-music-toggle]');
   const musicLabel = musicToggle?.querySelector('.music-control-label');
@@ -179,17 +179,23 @@
       else stopMusic();
     });
 
+    // İlk yüklemede hemen dene. Chrome/Android bazı durumlarda izin verir.
+    // iPhone/Safari gibi tarayıcılar engellerse ilk doğal kullanıcı hareketi devralır.
+    startMusic();
+    window.addEventListener('load', startMusic, { once: true });
+
     const unlockMusic = async event => {
       if (event.target?.closest?.('[data-music-toggle]')) return;
       if (!musicStarted && music.paused) await startMusic();
-      document.removeEventListener('click', unlockMusic, true);
-      document.removeEventListener('keydown', unlockMusic, true);
+      if (musicStarted) {
+        document.removeEventListener('pointerdown', unlockMusic, true);
+        document.removeEventListener('click', unlockMusic, true);
+        document.removeEventListener('keydown', unlockMusic, true);
+      }
     };
+    document.addEventListener('pointerdown', unlockMusic, { capture: true, passive: true });
     document.addEventListener('click', unlockMusic, true);
     document.addEventListener('keydown', unlockMusic, true);
-
-    // Tarayıcı izin verirse açılışta başlatmayı dener; izin vermezse ilk tıklama devralır.
-    window.setTimeout(() => startMusic(), 900);
 
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {

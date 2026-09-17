@@ -667,3 +667,7 @@ p,h1,h2,h3,h4,figure{margin:0}
   .contact-person strong{font-size:27px}
   .contact-person em{font-size:15px}
 }
+
+/* v10.3 family section without heading */
+.family-section{padding-top:64px;padding-bottom:68px}
+@media(max-width:767px){.family-section{padding-top:34px;padding-bottom:36px}}
