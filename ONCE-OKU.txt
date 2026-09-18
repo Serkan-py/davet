@@ -1,0 +1,35 @@
+EDANUR & SERKAN — MOBİL MÜZİK DÜZENLEMESİ · 18.09.2026
+
+Bu paket gönderdiğiniz davet-main.zip dosyasındaki güncel tasarımı esas alır.
+İsimler, etkinlik bilgileri, haritalar, takvimler, videolar, müzik kaydı ve CSS
+tasarımı değiştirilmedi.
+
+MÜZİK NASIL BAŞLAR?
+Sayfa açılışında sesli oynatma isteği beklemeden gönderilir.
+Telefonun tarayıcısı izin verirse müzik doğrudan başlar. İzin vermezse ilk
+dokunma/tıklama (touchend, pointerup, click) ya da Enter/Boşluk müziği başlatmayı
+dener. Tarayıcı kısıtlaması nedeniyle her telefonda dokunmadan ses garantisi yok.
+Düğme gerçekten çalıyorsa "Müziği kapat", duruyorsa "Müziği aç" gösterir.
+Kapatılan müzik yükleme bitince veya sonraki dokunuşlarla tekrar açılmaz.
+Sekme arka plana geçince durur; geri gelince daha önce çalıyorsa devam eder.
+
+YÜKLEME
+1. ZIP'i tamamen bir klasöre çıkarın.
+2. Dosyaların tamamını mevcut sitenizin index.html dosyasının bulunduğu dizine
+   yükleyin. ZIP dosyasını tek başına depoya atmak siteyi güncellemez.
+3. index.html, music-control.js ve script-mobile.20260918.js birlikte olmalı.
+4. Yerel önizleme için index.html dosyasını Chrome/Edge/Opera ile açabilirsiniz.
+
+Node.js, npm, build veya yeni servis kurulumu gerekmez.
+Müzik kaydı music.m4a dosyasıdır. Yeni müzik kodu music-control.js içindedir.
+Sayfanın diğer davranışları script-mobile.20260918.js içindedir.
+script.js, eski HTML önbelleklerinin bozulmaması için eski haliyle korunmuştur;
+yeni index.html bu eski betiği çalıştırmaz.
+Paketteki eski EDANUR-SERKAN-DAVET-v10-3-ADRES-MUZIK-FINAL.zip arşiv olarak
+korundu; siteyi çalıştırmak için onu açmanız veya yayınlamanız gerekmez.
+
+DOĞRULAMA
+Otomatik oynatma isteği, engellenirse dokunmayla tekrar deneme, kullanıcı
+kapatma kararının korunması ve sekme değişiminde durma kod düzeyinde kontrol
+edildi. Gerçek iPhone/Android cihazında ses çıkışı bu oturumda test edilmedi.
+Canlı sitenize bu işlem sırasında yayın yapılmadı.

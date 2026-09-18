@@ -26,10 +26,11 @@
   <link rel="preload" href="images/couple-story-poster.webp" as="image" media="(min-width:768px)" fetchpriority="high" />
   <link rel="preload" href="images/couple-story-mobile-poster.webp" as="image" media="(max-width:767px)" fetchpriority="high" />
   <link rel="stylesheet" href="styles.css" />
-  <script defer src="script.js"></script>
+  <script defer src="music-control.js?v=20260918-mobile"></script>
+  <script defer src="script-mobile.20260918.js"></script>
 </head>
 <body>
-  <noscript><style>.scene-controls{display:none!important}.reveal{opacity:1!important;transform:none!important}.hero-copy{opacity:1!important;transform:translate(-50%,0)!important}</style></noscript>
+  <noscript><style>.music-control{display:none!important}.scene-controls{display:none!important}.reveal{opacity:1!important;transform:none!important}.hero-copy{opacity:1!important;transform:translate(-50%,0)!important}</style></noscript>
   <a class="skip-link" href="#bilgiler">İçeriğe geç</a>
 
   <main class="invitation-page" id="ana-icerik">
@@ -163,7 +164,7 @@
     </footer>
   </main>
 
-  <audio id="wedding-music" preload="auto" autoplay loop>
+  <audio id="wedding-music" preload="auto" autoplay loop controls>
     <source src="music.m4a" type="audio/mp4" />
   </audio>
   <button class="music-control" type="button" data-music-toggle aria-pressed="false" aria-label="Müziği aç">
